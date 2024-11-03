@@ -1,59 +1,62 @@
 # Tasks
 
-0. Create a new React app using vite.
-    **Install Node.js**:
-    - Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+## 0. Create a New React App Using Vite
 
-    **Create a New Vite Project**:
-    - Open your terminal and run:
+### Install Node.js
 
-        ```sh
-        npm create vite@latest
-        ```
+- Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
 
-    **Navigate to Project Directory**:
+### Create a New Vite Project
 
-    - Move into your project folder:
+- Open your terminal and run:
 
-        ```sh
-        cd my-react-app
-        ```
+    ```sh
+    npm create vite@latest
+    ```
 
-    **Install Dependencies**:
+### Navigate to Project Directory
 
-    - Install the necessary dependencies:
+- Move into your project folder:
 
-        ```sh
-        npm install
-        ```
+    ```sh
+    cd my-react-app
+    ```
 
-    **Start the Development Server**:
+### Install Dependencies
 
-    - Run the development server:
+- Install the necessary dependencies:
 
-        ```sh
-        npm run dev
-        ```
+    ```sh
+    npm install
+    ```
 
-1. **Create a Welcome Message Component**
+### Start the Development Server
 
-- Add the component `WelcomeMessage` in `day_1/excercises/WelcomeMessage.tsx` to your app and follow the instructions in the file.
+- Run the development server:
 
-2. **Create a Counter Component**
+    ```sh
+    npm run dev
+    ```
+
+## 1. Create a Welcome Message Component
+
+- Add the component `WelcomeMessage` in `day_1/exercises/WelcomeMessage.tsx` to your app and follow the instructions in the file.
+
+## 2. Create a Counter Component
 
 - The component displays a number and has two buttons: one to increment the number and one to decrement it.
 - The component should be created in `src/components/Counter.tsx` and added to the app.
 
-3. **Create a Toggle Switch**
+## 3. Create a Toggle Switch
 
 - The component should display a switch that toggles between "On" and "Off" states.
 - The switch should have a visual indicator to show its current state.
 - The component should be created in `src/components/ToggleSwitch.tsx` and added to the app.
 - The switch should have an `onChange` event handler to update the state when toggled.
 
-4.**Create an Accordion Component**
+## 4. Create an Accordion Component
 
-4.1 **Basic Accordion**
+### 4.1 Basic Accordion
 
 - The Accordion component should render multiple Panel components.
 - Each Panel component should have a boolean `isActive` state to determine whether its content is visible and a title prop.
@@ -61,7 +64,7 @@
 - Create two Panels and one Accordion.
 - Add the Accordion component to the app.
 
- 4.2 **Single Active Panel Accordion**
+### 4.2 Single Active Panel Accordion
 
 - Notice how pressing one panel’s button does not affect the other panel — they are independent.
 - Change it so that only one panel is expanded at any given time. Expanding the second panel should collapse the first one.
