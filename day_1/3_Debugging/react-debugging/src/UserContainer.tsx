@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ExpensiveCalculation } from "./ExpensiveCalculation";
 
 export const UserContainer = () => {
   console.log("🚀 ~ Container ~ rendered");
@@ -18,7 +17,6 @@ const UserList = () => {
       <button onClick={() => setCount(count + 1)}>
         Click me | Counter: {count}
       </button>
-      <ExpensiveCalculation />
       <div className="user-list">
         <UserItem />
         <UserItem />
