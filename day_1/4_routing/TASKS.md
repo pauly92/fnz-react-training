@@ -4,15 +4,12 @@
 
 ### 1. Create a Simple Routing System
 
-Follow these steps to set up a basic routing system using React Router:
-
-1. **Home Component**: Displays a welcome message.
-2. **About Component**: Displays information about the project.
-3. **Contact Component**: Displays contact information.
-4. **Navbar Component**: Links to the Home, About, and Contact components.
-5. **Layout Component**: Displays the Navbar and the current component.
+1. **Layout Component**: Displays the Navbar and the current component.
+2. **Navbar Component**: Links to the Home, About, and Contact components.
+3. **Home Component**: Displays a welcome message.
+4. **About Component**: Displays information about the project.
+5. **Contact Component**: Displays contact information.
 6. **ErrorPage Component**: Displays a 404 error message on the root path.
-7. **React Router**: Use it to navigate between the components.
 
 ### 1.1 Install React Router
 
@@ -33,7 +30,3 @@ Create a page that displays a 404 error message when the path is not found.
 ### 4. Extend the About Component
 
 Add a button to the About component that navigates to the Contact component when clicked.
-
-### 5. Additional Resources
-
-For more information on React Router, visit the [official documentation](https://reactrouter.com/).
