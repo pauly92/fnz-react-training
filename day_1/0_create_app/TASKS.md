@@ -52,7 +52,7 @@
 - The component should display a switch that toggles between "On" and "Off" states.
 - The switch should have a visual indicator to show its current state.
 - The component should be created in `src/components/ToggleSwitch.tsx` and added to the app.
-- The switch should have an `onChange` event handler to update the state when toggled.
+- The switch should have an `onClick` event handler to update the state when toggled.
 
 ## 4. Create an Accordion Component
 
