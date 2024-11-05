@@ -20,6 +20,6 @@ Source: <https://react.dev/learn/managing-state>
 ## Challenges
 
 1. Find the bug in /challenges/Clock.tsx and fix it.
-2. Find the bug in /challenges/Travel.tsx and fix it.
+2. Find the bug in /challenges/TravelPlan.tsx and fix it.
 3. Use the context API in the prop_drilling example to pass the state down from the parent compont to the child component.
 4. Use Zustand to manage the global state of the app. Refactor the app to use Zustand instead of the context API.
