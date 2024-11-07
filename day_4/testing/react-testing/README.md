@@ -19,6 +19,11 @@ npm install -D vitest
 npm i @testing-library/jest-dom --save-dev
 npm i @testing-library/react'
 npm i jsdom
+
+Extend your package.json scripts:
+ "scripts": {
+    "test": "vitest"
+  },
 ```
 
 'vitest.config.ts' file:
