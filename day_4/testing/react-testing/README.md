@@ -15,6 +15,7 @@ To install Vitest, run the following command:
 ```bash
 npm install -D vitest
 npm i @testing-library/jest-dom --save-dev
+npm i @testing-library/react'
 ```
 
 'vitest.config.ts' file:
