@@ -17,4 +17,30 @@ npm install -D vitest
 npm i @testing-library/jest-dom --save-dev
 ```
 
-#### Usage
+'vitest.config.ts' file:
+
+```typescript
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./test.setup.ts", // assuming the test folder is in the root of our project
+  },
+});
+```
+
+'./test.setup.ts' file:
+
+```typescript
+import { expect, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import * as matchers from "@testing-library/jest-dom/matchers";
+
+expect.extend(matchers);
+
+afterEach(() => {
+  cleanup();
+});
+```
