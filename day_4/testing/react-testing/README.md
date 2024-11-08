@@ -53,3 +53,7 @@ afterEach(() => {
   cleanup();
 });
 ```
+
+### Mocking Zustand
+
+SOURCE: <https://zustand.docs.pmnd.rs/guides/testing>

@@ -3,6 +3,7 @@ import "@testing-library/jest-dom"; // Provides custom matchers for Jest
 import { describe, expect, it } from "vitest"; // Test framework
 
 import App from "./App"; // Import the component to be tested
+import { ZustandExample } from "./ZustandExample";
 /**
  * Characteristics of Good Tests:
  *
@@ -127,3 +128,42 @@ describe("App", () => {
     expect(reactLink).toHaveAttribute("href", "https://react.dev");
   });
 });
+
+
+describe('ZustandExample', () => {
+
+  it('renders Child A', () => {   
+      render(<ZustandExample />);
+      screen.debug();
+      screen.getByText('Child A');
+  });
+
+  it('renders Child B', () => {
+      render(<ZustandExample />);
+      screen.debug();
+      screen.getByText('Child B');
+  });
+
+  it('renders Child C', () => {
+      render(<ZustandExample />);
+      screen.debug();
+      screen.getByText('Child C');
+  });
+
+  it('renders Update Counter button', () => {
+      render(<ZustandExample />);
+      screen.debug();
+      screen.getByText('Update Counter');
+  });
+
+  it('increments the counter', () => {
+      render(<ZustandExample />);
+      const button = screen.getByText('Update Counter');
+      fireEvent.click(button);
+      fireEvent.click(button);
+      screen.debug();
+
+      // get by data-count
+      screen.findByTestId('counter');        
+  });
+})
