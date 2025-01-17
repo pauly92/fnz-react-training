@@ -1,10 +1,13 @@
-import { api } from "../../core/configs/AxiosConfig";
+import { api } from "@modules/core/configs/AxiosConfig";
+import { TodoList } from "@modules/todo/components/TodoList";
 
-export const getTodoLists = async () => {
+export const getTodoLists= async () => {
 
     try {
         const response = await api.get('/todolists');
-        console.log(response);
+        console.log('getTodoLists response: ', response);
+        const data: TodoList[] = await response.data;
+        return data;
     } catch (error) {
         console.log(error);
     }
