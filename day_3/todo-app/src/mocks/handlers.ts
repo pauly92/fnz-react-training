@@ -16,7 +16,7 @@ const todoitems: TodoItem[] = [
  
 export const handlers = [
     http.get('/todolists', () => {
-        return HttpResponse.json({text: "testing..."});
+        return HttpResponse.json(todoLists);
       }),
     http.get('/todoitems/:todolistid', ({ params }) => {
         console.log(`All todo items of the list with id=${params.todolistid} will be sent!`);
