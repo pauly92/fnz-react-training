@@ -20,5 +20,6 @@ export const handlers = [
       }),
     http.get('/todoitems/:todolistid', ({ params }) => {
         console.log(`All todo items of the list with id=${params.todolistid} will be sent!`);
+        return HttpResponse.json(todoitems);
       }),
 ];
