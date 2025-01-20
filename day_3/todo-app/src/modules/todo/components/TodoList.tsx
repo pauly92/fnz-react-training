@@ -3,6 +3,8 @@ import { TodoItem } from "./TodoItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import IconComponent from "@modules/core/components/Icon";
+import { useContext, useState } from "react";
+import { ActiveTodoListIdContext } from "../context/ActiveTodoListIdContext";
 
 export interface TodoList {
     id: number,
@@ -13,13 +15,18 @@ export interface TodoList {
 
 type TodoListComponentProps = {
     todoList: TodoList,
-    activeTodoListId: number
+    // handleClick: React.MouseEvent<HTMLButtonElement>
+    // isSelected: boolean,
 };
 
-const TodoListComponent: React.FC<TodoListComponentProps> = ({todoList, activeTodoListId}) => {
-        console.log('activeTodoListId: ', activeTodoListId);
+const TodoListComponent: React.FC<TodoListComponentProps> = ({todoList}) => {
+    const [activeTodoListId, setActiveTodoListId] = useState(useContext(ActiveTodoListIdContext));
+    // const activeTodoListId = useContext(ActiveTodoListIdContext);
+    console.log('[TodoList] activeTodoListId: ', activeTodoListId);
+    
     return (
-        <ListItemButton selected={activeTodoListId == todoList.id}>
+        <ListItemButton onClick={() => setActiveTodoListId(todoList.id)} 
+            selected={activeTodoListId == todoList.id}>
             <ListItemIcon>
                 <IconComponent iconName={todoList.icon}></IconComponent>
             </ListItemIcon>

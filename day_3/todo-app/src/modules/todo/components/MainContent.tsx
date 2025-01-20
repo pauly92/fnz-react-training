@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Box,
   List,
@@ -10,9 +10,23 @@ import {
   Paper,
   ListSubheader,
 } from '@mui/material';
-import { LayoutComponentProps } from '../types/LayoutComponentProps';
+import { LayoutComponentProps } from '@modules/core/types/LayoutComponentProps';
+import TodoItemComponent, { TodoItem } from './TodoItem';
+import { getTodoItemsByTodoListId } from '@modules/todo/services/TodoItemServicee';
+import { ActiveTodoListIdContext } from '@modules/todo/context/ActiveTodoListIdContext';
 
-const MainContent: React.FC<LayoutComponentProps> = ({children}) => {
+const MainContent: React.FC<LayoutComponentProps> = () => {
+    const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
+    const activeTodoListId = useContext(ActiveTodoListIdContext);
+    console.log('[MainContent] activeTodoListId: ', activeTodoListId);
+
+    useEffect(() => {
+        getTodoItemsByTodoListId(activeTodoListId).then(result => {
+            console.log(`getTodoItemsByTodoListId(id=${activeTodoListId}) result: `, result);
+            result && setTodoItems(result);
+        });
+    }, [activeTodoListId]);
+
     return (
         <Box
             component="main"
@@ -28,7 +42,9 @@ const MainContent: React.FC<LayoutComponentProps> = ({children}) => {
             {/* Task Sections */}
             <Box>
                 <Paper>
-                    {children}
+                    {todoItems.map(ti => 
+                        <TodoItemComponent key={ti.id} todoItem={ti}></TodoItemComponent>
+                    )}
                 </Paper>
             </Box>
 
