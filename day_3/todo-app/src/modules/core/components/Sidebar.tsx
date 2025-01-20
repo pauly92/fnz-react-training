@@ -1,36 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Box,
-  CssBaseline,
   Divider,
   Drawer,
   List,
   ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Typography,
-  Paper,
-  ListSubheader,
 } from '@mui/material';
 
-import { getTodoLists } from '@modules/todo/services/TodoListService';
-import TodoListComponent, { TodoList } from '@modules/todo/components/TodoList';
-import { api } from '@modules/core/configs/AxiosConfig';
+import { LayoutComponentProps } from '../types/LayoutComponentProps';
 
 const drawerWidth = 240;
 
-const Sidebar: React.FC = () => {
-    const [todoLists, setTodoLists] = useState<TodoList[]>([]);
-
-    useEffect(() => {
-        getTodoLists().then(result => {
-            console.log('result: ', result);
-            result && setTodoLists(result);
-        }); 
-    }, []);
-
-    
+const Sidebar: React.FC<LayoutComponentProps> = ({children}) => {
     return (
         <Drawer variant="permanent"
             sx={{
@@ -49,23 +31,7 @@ const Sidebar: React.FC = () => {
                 </Typography>
                 </ListItem>
                 <Divider />
-                
-                {todoLists.map(tl => <TodoListComponent key={tl.id} todoList={tl}></TodoListComponent>)}
-                
-
-                {/* <ListItemButton>
-                <ListItemIcon>
-                    <ShoppingCartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Shopping List" />
-                </ListItemButton>
-
-                <ListItemButton>
-                <ListItemIcon>
-                    <FolderIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dänemark" />
-                </ListItemButton> */}
+                {children}
             </List>
             </Box>
       </Drawer>

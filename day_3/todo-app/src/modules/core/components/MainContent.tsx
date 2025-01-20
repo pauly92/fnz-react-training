@@ -10,8 +10,9 @@ import {
   Paper,
   ListSubheader,
 } from '@mui/material';
+import { LayoutComponentProps } from '../types/LayoutComponentProps';
 
-const MainContent: React.FC = () => {
+const MainContent: React.FC<LayoutComponentProps> = ({children}) => {
     return (
         <Box
             component="main"
@@ -26,7 +27,12 @@ const MainContent: React.FC = () => {
 
             {/* Task Sections */}
             <Box>
-            {/* Today Section */}
+                <Paper>
+                    {children}
+                </Paper>
+            </Box>
+
+            {/* <Box>
             <Paper sx={{ p: 2, mb: 3 }}>
                 <Typography variant="h6" sx={{ mb: 1 }}>
                 Today
@@ -38,7 +44,7 @@ const MainContent: React.FC = () => {
                 </List>
             </Paper>
 
-            {/* Work in Progress Section */}
+
             <Paper sx={{ p: 2, mb: 3 }}>
                 <Typography variant="h6" sx={{ mb: 1 }}>
                 Work in Progress
@@ -53,7 +59,7 @@ const MainContent: React.FC = () => {
                 </List>
             </Paper>
 
-            {/* Backlog Section */}
+
             <Paper sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 1 }}>
                 Backlog
@@ -72,8 +78,8 @@ const MainContent: React.FC = () => {
                 </ListItem>
                 </List>
             </Paper>
-            </Box>
-        </Box>
+            </Box>*/}
+        </Box> 
     );
 };
 

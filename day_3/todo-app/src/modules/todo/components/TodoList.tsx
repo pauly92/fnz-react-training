@@ -12,12 +12,14 @@ export interface TodoList {
 }
 
 type TodoListComponentProps = {
-    todoList: TodoList
+    todoList: TodoList,
+    activeTodoListId: number
 };
 
-const TodoListComponent: React.FC<TodoListComponentProps> = ({todoList}) => {
+const TodoListComponent: React.FC<TodoListComponentProps> = ({todoList, activeTodoListId}) => {
+        console.log('activeTodoListId: ', activeTodoListId);
     return (
-        <ListItemButton key={todoList.id}>
+        <ListItemButton selected={activeTodoListId == todoList.id}>
             <ListItemIcon>
                 <IconComponent iconName={todoList.icon}></IconComponent>
             </ListItemIcon>
