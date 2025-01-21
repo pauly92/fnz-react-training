@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useContext, useEffect, useState } from 'react';
 import {
   Box,
   Divider,
@@ -8,17 +8,13 @@ import {
   Typography,
 } from '@mui/material';
 
-import { LayoutComponentProps } from '../../core/types/LayoutComponentProps';
-import TodoListComponent, { TodoList } from './TodoList';
-import { getTodoLists } from '../services/TodoListService';
-import { ActiveTodoListIdContext } from '../context/ActiveTodoListIdContext';
+import TodoListComponent, { TodoList } from '@modules/todo/components/TodoList';
+import { getTodoLists } from '@modules/todo/services/TodoListService';
 
 const drawerWidth = 240;
 
-const Sidebar: React.FC<LayoutComponentProps> = () => {
+const Sidebar: React.FC<PropsWithChildren> = () => {
     const [todoLists, setTodoLists] = useState<TodoList[]>([]);   
-    const activeTodoListId = useContext(ActiveTodoListIdContext); 
-    console.log('[Sidebar] activeTodoListId: ', activeTodoListId);
 
     useEffect(() => {
         getTodoLists().then(result => {
