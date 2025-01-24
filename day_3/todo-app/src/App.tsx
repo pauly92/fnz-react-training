@@ -1,20 +1,23 @@
 import './App.css'
-import Sidebar from '@modules/todo/components/Sidebar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import MainContent from '@modules/todo/components/MainContent';
-import ActiveTodoListIdContextProvider from '@modules/todo/provider/ActiveTodoListIdContextProvider';
+import { Route, Routes } from 'react-router-dom';
+import { Box, CssBaseline } from '@mui/material';
+import Sidebar from '@modules/todo/components/Sidebar';
 
 function App() {
-    return (
+  return (
+    <>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <ActiveTodoListIdContextProvider>
-          <Sidebar />
-          <MainContent />
-        </ActiveTodoListIdContextProvider>
+        <Sidebar />
+        <Routes>
+          <Route path="/todolist/:id" element={<MainContent />} />
+        </Routes>
       </Box>
-    )
+
+    </>
+  );
+
 }
 
 // /todolistitem/:id

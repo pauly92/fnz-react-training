@@ -13,11 +13,14 @@ import {
 import TodoItemComponent, { TodoItem } from './TodoItem';
 import { getTodoItemsByTodoListId } from '@modules/todo/services/TodoItemServicee';
 import ActiveTodoListIdContext from '@modules/todo/context/ActiveTodoListIdContext';
+import { useParams } from 'react-router-dom';
 
 
 const MainContent: React.FC<PropsWithChildren> = () => {
     const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
-    const {activeID} = useContext(ActiveTodoListIdContext);
+    // const {activeID} = useContext(ActiveTodoListIdContext);
+    const { id } = useParams();
+    const activeID = id ? parseInt(id) : 0;
     console.log('[MainContent] activeTodoListId: ', activeID);
 
     useEffect(() => {
