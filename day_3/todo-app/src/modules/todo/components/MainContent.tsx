@@ -1,34 +1,21 @@
-import React, { PropsWithChildren, useContext, useEffect, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import {
   Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Typography,
   Paper,
-  ListSubheader,
 } from '@mui/material';
-import TodoItemComponent, { TodoItem } from './TodoItem';
-import { getTodoItemsByTodoListId } from '@modules/todo/services/TodoItemServicee';
-import ActiveTodoListIdContext from '@modules/todo/context/ActiveTodoListIdContext';
+import TodoItemComponent from './TodoItem';
+import { useTodoItems } from '@modules/todo/services/TodoItemServicee';
 import { useParams } from 'react-router-dom';
 
 
 const MainContent: React.FC<PropsWithChildren> = () => {
-    const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
-    // const {activeID} = useContext(ActiveTodoListIdContext);
     const { id } = useParams();
     const activeID = id ? parseInt(id) : 0;
     console.log('[MainContent] activeTodoListId: ', activeID);
 
-    useEffect(() => {
-        getTodoItemsByTodoListId(activeID).then(result => {
-            console.log(`getTodoItemsByTodoListId(id=${activeID}) result: `, result);
-            result && setTodoItems(result);
-        });
-    }, [activeID]);
+    const { todoItems } = useTodoItems(activeID);
+
 
     return (
         <Box
@@ -45,7 +32,7 @@ const MainContent: React.FC<PropsWithChildren> = () => {
             {/* Task Sections */}
             <Box>
                 <Paper>
-                    {todoItems.map(ti => 
+                    {todoItems && todoItems.map(ti => 
                         <TodoItemComponent key={ti.id} todoItem={ti}></TodoItemComponent>
                     )}
                 </Paper>

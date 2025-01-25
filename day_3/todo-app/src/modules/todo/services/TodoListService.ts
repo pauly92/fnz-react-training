@@ -1,26 +1,21 @@
-import { api } from "@modules/core/configs/AxiosConfig";
+import { swrConfig, useSWR } from "@modules/core/configs/SwrConfig";
 import { TodoList } from "@modules/todo/components/TodoList";
 
-export const getTodoLists= async () => {
+type useTodoListsReturnType = {
+    todoLists: TodoList[] | undefined;
+    isLoading?: boolean;
+    isError?: any;
+}
 
-    try {
-        const response = await api.get('/todolists');
-        console.log('getTodoLists response: ', response);
-        const data: TodoList[] = await response.data;
-        return data;
-    } catch (error) {
-        console.log(error);
+export const useTodoLists = (): useTodoListsReturnType => {
+    const { data, error } = useSWR(`/todolists`, swrConfig);
+    if (error) {
+        console.error('getTodoLists error: ', error);
     }
-
-    // api.get('/todolists')
-    //     .then(function (response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     })
-    //     .finally(function () {
-    //         // always executed
-    //     });
-
-};
+    console.log('getTodoLists response: ', data);
+    return<useTodoListsReturnType>{ 
+        todoLists: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
