@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import {
     Box,
     Divider,
@@ -13,8 +13,7 @@ import { useTodoLists } from '@modules/todo/services/TodoListService';
 
 const drawerWidth = 240;
 
-const Sidebar: React.FC<PropsWithChildren> = () => {
-    // const [todoLists, setTodoLists] = useState<TodoList[]>([]);
+const Sidebar: React.FC<PropsWithChildren & {activeID: number}> = ({activeID}) => {
 
     const { todoLists } = useTodoLists();
 
@@ -39,7 +38,8 @@ const Sidebar: React.FC<PropsWithChildren> = () => {
                     {todoLists && todoLists.map(tl =>
                         <TodoListComponent
                             key={tl.id}
-                            todoList={tl} >
+                            todoList={tl} 
+                            activeID={activeID}>
                         </TodoListComponent>)
                     }
                 </List>

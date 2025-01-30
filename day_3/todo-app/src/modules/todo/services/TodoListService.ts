@@ -12,7 +12,6 @@ export const useTodoLists = (): useTodoListsReturnType => {
     if (error) {
         console.error('getTodoLists error: ', error);
     }
-    console.log('getTodoLists response: ', data);
     return<useTodoListsReturnType>{ 
         todoLists: data,
         isLoading: !error && !data,

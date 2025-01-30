@@ -3,8 +3,7 @@ import { TodoItem } from "./TodoItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import IconComponent from "@modules/core/components/Icon";
-import { useContext, useState } from "react";
-import ActiveTodoListIdContext from "../context/ActiveTodoListIdContext";
+import { useNavigate } from "react-router-dom";
 
 export interface TodoList {
     id: number,
@@ -15,21 +14,22 @@ export interface TodoList {
 
 type TodoListComponentProps = {
     todoList: TodoList,
+    activeID?: number,
 };
 
-const TodoListComponent: React.FC<TodoListComponentProps> = ({todoList}) => {
-    const {activeID, setActiveID} = useContext(ActiveTodoListIdContext);
-    console.log('[TodoList] activeTodoListId: ', activeID);
-    
+const TodoListComponent: React.FC<TodoListComponentProps> = ({ todoList, activeID }) => {
+    let navigate = useNavigate();
+
     return (
         // navigate(/:id)
-        <ListItemButton onClick={() => setActiveID && setActiveID(todoList.id)} 
-            selected={activeID == todoList.id}>
-            <ListItemIcon>
-                <IconComponent iconName={todoList.icon}></IconComponent>
-            </ListItemIcon>
-            <ListItemText primary={todoList.title} />
-        </ListItemButton>
+        <ListItemButton onClick={() => navigate(`/todolist/${todoList.id}`)}
+                selected={activeID == todoList.id}>
+                <ListItemIcon>
+                    <IconComponent iconName={todoList.icon}></IconComponent>
+                </ListItemIcon>
+                <ListItemText primary={todoList.title} />
+            </ListItemButton>
+
     );
 };
 

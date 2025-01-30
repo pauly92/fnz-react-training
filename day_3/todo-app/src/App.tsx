@@ -1,17 +1,18 @@
 import './App.css'
-import MainContent from '@modules/todo/components/MainContent';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Box, CssBaseline } from '@mui/material';
-import Sidebar from '@modules/todo/components/Sidebar';
+import AppLayout from '@modules/core/components/AppLayout';
 
 function App() {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Sidebar />
         <Routes>
-          <Route path="/todolist/:id" element={<MainContent />} />
+          <Route path="/">
+            <Route element={<Navigate replace to='/todolist/1'/>} index />
+          </Route>
+          <Route path="/todolist/:id" element={<AppLayout />} />
         </Routes>
       </Box>
 
@@ -19,9 +20,5 @@ function App() {
   );
 
 }
-
-// /todolistitem/:id
-
-
 
 export default App
