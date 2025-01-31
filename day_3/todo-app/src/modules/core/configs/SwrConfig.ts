@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { api } from '@modules/core/configs/AxiosConfig';
 import useSWR, { SWRConfiguration } from 'swr';
 

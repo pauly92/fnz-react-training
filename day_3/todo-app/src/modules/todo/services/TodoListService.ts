@@ -5,6 +5,7 @@ type useTodoListsReturnType = {
     todoLists: TodoList[] | undefined;
     isLoading?: boolean;
     isError?: any;
+    mutate?: () => void;
 }
 
 export const useTodoLists = (): useTodoListsReturnType => {
@@ -16,5 +17,18 @@ export const useTodoLists = (): useTodoListsReturnType => {
         todoLists: data,
         isLoading: !error && !data,
         isError: error,
+    };
+}
+
+export const useAddTodoList = (): useTodoListsReturnType => {
+    const { data, error, isLoading, mutate } = useSWR(`/todolists`, swrConfig);
+    if (error) {
+        console.error('getTodoLists error: ', error);
+    }
+    return<useTodoListsReturnType>{ 
+        todoLists: data,
+        isLoading: !error && !data,
+        isError: error,
+        mutate: mutate,
     };
 }

@@ -19,20 +19,41 @@ const todoLists: TodoList[] = [
     {id: 2, title: "Website Redesign", icon:"Work", items: todoitems},
 ];
  
-export const handlers = [
-    http.get('/todolists', () => {
-        return HttpResponse.json(todoLists);
-      }),
+interface GetItemsByListIdParams {
+  todolistid?: string;
+}
 
-    http.get('/todoitems/:todolistid', ({ params }) => {
+interface AddTodoListRequest {
+    title: string;
+    icon?: string;
+}
+
+interface AddTodoListResponse {
+    id: number;
+    title: string;
+    icon?: string;
+    items: TodoItem[];
+}
+
+export const handlers = [
+    http.get('/todolists', (): HttpResponse => {
+        return HttpResponse.json(todoLists);
+    }),
+
+    http.get('/todoitems/:todolistid', ({ params }: { params: GetItemsByListIdParams }): HttpResponse => {
         const listId = typeof params.todolistid === 'string' ? parseInt(params.todolistid) : undefined;
 
-        if(listId === undefined) {
+        if (listId === undefined) {
             return HttpResponse.error();
         }
 
         const requestedTodoList = todoLists.filter(l => l.id === listId)[0];
         return HttpResponse.json(requestedTodoList.items);
-        
-      }),
+    }),
+
+    http.post('/todolists', (req, res, ctx): HttpResponse => {
+        const newTodoList = req.body as TodoList;
+        todoLists.push(newTodoList);
+        return res(ctx.status(201), ctx.json(newTodoList));
+    })
 ]; 

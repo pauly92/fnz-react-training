@@ -14,7 +14,7 @@ import {
 import * as Yup from 'yup';
 
 import TodoListComponent from '@modules/todo/components/TodoList';
-import { useTodoLists } from '@modules/todo/services/TodoListService';
+import { useAddTodoList, useTodoLists } from '@modules/todo/services/TodoListService';
 import buttonTheme from '@modules/core/themes/button';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 
@@ -46,6 +46,12 @@ const Sidebar: React.FC<PropsWithChildren & { activeID: number }> = ({ activeID 
         { resetForm }: FormikHelpers<FormValues>
     ): void => {
         console.log("New list created:", values);
+        todoLists && todoLists.push({
+            id: todoLists.length + 1,
+            title: values.listName,
+            icon: "List",
+            items: []
+        });
         resetForm();
         handleClose();
     };
