@@ -21,12 +21,12 @@ import { Field, Form, Formik, FormikHelpers } from 'formik';
 const drawerWidth = 240;
 
 // Define the type for form values
-interface FormValues {
+interface TodoListCreationFormValues {
     listName: string;
 }
 
 // Validation schema using Yup
-const validationSchema = Yup.object({
+const TodoListCreationFormValidationSchema = Yup.object({
     listName: Yup.string().required("List name is required"),
 });
 
@@ -42,8 +42,8 @@ const Sidebar: React.FC<PropsWithChildren & { activeID: number }> = ({ activeID 
 
     // Form submission handler
     const handleSubmit = (
-        values: FormValues,
-        { resetForm }: FormikHelpers<FormValues>
+        values: TodoListCreationFormValues,
+        { resetForm }: FormikHelpers<TodoListCreationFormValues>
     ): void => {
         console.log("New list created:", values);
         todoLists && todoLists.push({
@@ -121,7 +121,7 @@ const Sidebar: React.FC<PropsWithChildren & { activeID: number }> = ({ activeID 
                         </Typography>
                         <Formik
                             initialValues={{ listName: "" }}
-                            validationSchema={validationSchema}
+                            validationSchema={TodoListCreationFormValidationSchema}
                             onSubmit={handleSubmit}
                         >
                             {({ errors, touched }) => (

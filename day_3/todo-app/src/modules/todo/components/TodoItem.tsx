@@ -3,9 +3,10 @@ import ListItem from "@mui/material/ListItem";
 import { useState } from "react";
 
 export interface TodoItem {
-    id: number;
+    id?: number;
     title: string;
-    category: string;
+    dueDate?: string;
+    category?: string;
 }
 
 type TodoItemComponentProps = {
