@@ -1,12 +1,20 @@
-import { api } from "@modules/core/configs/AxiosConfig";
+import { swrConfig, useSWR } from "@modules/core/configs/SwrConfig";
+import { TodoItem } from "@modules/todo/components/TodoItem";
 
-export const getTodoItemsByTodoListId = async (todolistid: number) => {
-    try {
-            const response = await api.get(`/todoitems/${todolistid}`);
-            console.log('getTodoItemsByTodoListId response: ', response);
-            const data = await response.data;
-            return data;
-        } catch (error) {
-            console.log(error);
-        }
-}; 
+type useTodoItemsReturnType = {
+    todoItems: TodoItem[] | undefined;
+    isLoading?: boolean;
+    isError?: any;
+}
+
+export const useTodoItems = (todolistid: number): useTodoItemsReturnType => {
+    const { data, error } = useSWR(`/todoitems/${todolistid}`, swrConfig);
+    if (error) {
+        console.error('getTodoItems error: ', error);
+    }
+    return <useTodoItemsReturnType>{
+        todoItems: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
+}

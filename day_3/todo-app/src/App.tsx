@@ -1,26 +1,24 @@
-import { useContext, useEffect, useState } from 'react';
 import './App.css'
-import Sidebar from '@modules/todo/components/Sidebar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import MainContent from '@modules/todo/components/MainContent';
-import { ActiveTodoListIdContext } from '@modules/todo/context/ActiveTodoListIdContext';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Box, CssBaseline } from '@mui/material';
+import AppLayout from '@modules/core/components/AppLayout';
 
 function App() {
-    
-    const activeTodoListIdFromContext = useContext(ActiveTodoListIdContext);
-
-    return (
+  return (
+    <>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <ActiveTodoListIdContext.Provider value={activeTodoListIdFromContext}>
-          <Sidebar>
-          </Sidebar>
-          <MainContent>
-          </MainContent>
-        </ActiveTodoListIdContext.Provider>
+        <Routes>
+          <Route path="/">
+            <Route element={<Navigate replace to='/todolist/1'/>} index />
+          </Route>
+          <Route path="/todolist/:id" element={<AppLayout />} />
+        </Routes>
       </Box>
-    )
+
+    </>
+  );
+
 }
 
 export default App
