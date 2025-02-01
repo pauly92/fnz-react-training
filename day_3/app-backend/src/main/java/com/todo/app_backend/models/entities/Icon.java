@@ -1,21 +1,13 @@
 package com.todo.app_backend.models.entities;
 
 public enum Icon {
-    BOOK,
-    BRIEFCASE,
-    CALENDAR,
-    CAMERA,
-    CLOCK,
-    COFFEE,
-    GIFT,
-    HEART,
-    HOME,
-    LIST,
-    MUSIC,
-    SHOPPINGCART,
-    STAR,
-    TRASH,
-    USER,
-    WARNING,
-    WORK,
+    CLOCK("Clock"),
+    SHOPPINGCART("ShoppingCart"),
+    WORK("Work");
+
+    public final String label;
+
+    Icon(String label) {
+        this.label = label;
+    }
 }

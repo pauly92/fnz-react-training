@@ -1,5 +1,6 @@
 package com.todo.app_backend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,7 @@ public class TodoList implements Serializable {
     @Enumerated(EnumType.STRING)
     private Icon icon;
 
-    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<TodoItem> items;
 }

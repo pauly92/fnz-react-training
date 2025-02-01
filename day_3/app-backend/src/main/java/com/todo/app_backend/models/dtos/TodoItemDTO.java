@@ -1,10 +1,14 @@
 package com.todo.app_backend.models.dtos;
 
-import com.todo.app_backend.models.entities.TodoList;
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TodoItemDTO {
     private Long id;
 
@@ -16,5 +20,4 @@ public class TodoItemDTO {
 
     private LocalDateTime dueAt;
 
-    private TodoList todoList;
 }

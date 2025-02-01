@@ -1,5 +1,6 @@
 package com.todo.app_backend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,6 +31,7 @@ public class TodoItem implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "todolist_id")
+    @JsonIgnore
     private TodoList todoList;
 
 }

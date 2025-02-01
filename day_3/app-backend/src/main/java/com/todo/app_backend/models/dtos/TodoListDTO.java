@@ -1,8 +1,14 @@
 package com.todo.app_backend.models.dtos;
 
-import com.todo.app_backend.models.entities.TodoItem;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TodoListDTO {
     private Long id;
 
@@ -12,5 +18,4 @@ public class TodoListDTO {
 
     private String icon;
 
-    private List<TodoItem> items;
 }
