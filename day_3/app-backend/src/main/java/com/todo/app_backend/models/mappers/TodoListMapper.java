@@ -1,7 +1,6 @@
 package com.todo.app_backend.models.mappers;
 
 import com.todo.app_backend.models.dtos.TodoListDTO;
-import com.todo.app_backend.models.entities.Icon;
 import com.todo.app_backend.models.entities.TodoList;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
