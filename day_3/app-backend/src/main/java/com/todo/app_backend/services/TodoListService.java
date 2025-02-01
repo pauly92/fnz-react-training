@@ -44,8 +44,9 @@ public class TodoListService {
 
     public TodoListDTO updateTodoListById(final Long id, final TodoListDTO newTodoListDTO) {
         final TodoList todoList = todoListRepository.findById(id).orElseThrow();
-        BeanUtils.copyProperties(newTodoListDTO, todoList, "id", "icon");
-        todoList.setIcon(Icon.valueOf(newTodoListDTO.getIcon().toUpperCase()));
+        final TodoList newTodoList = todoListMapper.toEntity(newTodoListDTO);
+        // Copy all properties except id and items (property from relationship)
+        BeanUtils.copyProperties(newTodoList, todoList, "id", "items");
         final TodoList updatedTodoList = todoListRepository.save(todoList);
         return todoListMapper.toDTO(updatedTodoList);
     }

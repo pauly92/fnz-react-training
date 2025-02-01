@@ -21,8 +21,7 @@ public class DataSeeder  implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-//        todoListRepository.deleteAll();
+    public void run(String... args) {
         if(todoListRepository.count() == 0) {
             log.info("Seeding data...");
             TodoList todoList1 = TodoList.builder().title("Shopping").icon(Icon.SHOPPINGCART).build();
