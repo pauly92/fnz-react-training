@@ -1,7 +1,6 @@
 package com.todo.app_backend.services;
 
 import com.todo.app_backend.models.dtos.TodoListDTO;
-import com.todo.app_backend.models.entities.Icon;
 import com.todo.app_backend.models.entities.TodoList;
 import com.todo.app_backend.models.mappers.TodoListMapper;
 import com.todo.app_backend.repositories.TodoListRepository;
@@ -49,5 +48,9 @@ public class TodoListService {
         BeanUtils.copyProperties(newTodoList, todoList, "id", "items");
         final TodoList updatedTodoList = todoListRepository.save(todoList);
         return todoListMapper.toDTO(updatedTodoList);
+    }
+
+    public void deleteTodoListById(final Long id) {
+        todoListRepository.deleteById(id);
     }
 }
