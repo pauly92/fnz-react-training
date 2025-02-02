@@ -8,7 +8,7 @@ type useTodoItemsReturnType = {
 }
 
 export const useTodoItems = (todolistid: number): useTodoItemsReturnType => {
-    const { data, error } = useSWR(`/todoitems/${todolistid}`, swrConfig);
+    const { data, error } = useSWR(`/todolists/${todolistid}/items`, swrConfig);
     if (error) {
         console.error('getTodoItems error: ', error);
     }

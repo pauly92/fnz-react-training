@@ -1,5 +1,6 @@
 package com.todo.app_backend;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,5 +10,4 @@ public class AppBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AppBackendApplication.class, args);
 	}
-
 }
