@@ -7,6 +7,8 @@ import {
     Select,
     MenuItem,
     SelectChangeEvent,
+    FormControl,
+    InputLabel,
 } from '@mui/material';
 
 
@@ -67,7 +69,7 @@ const TodoListCreationModal: React.FC<ModalProps> = (props) => {
                 >
                     {({ errors, touched, values, setFieldValue }) => (
                         <Form>
-                            <Field
+                            {/* <Field
                                 as={TextField}
                                 name="listName"
                                 label="List Name"
@@ -76,23 +78,40 @@ const TodoListCreationModal: React.FC<ModalProps> = (props) => {
                                 error={touched.listName && Boolean(errors.listName)}
                                 helperText={touched.listName && errors.listName}
                                 margin="normal"
-                            />
-                            <Select
-                                name="icon"
-                                value={values.icon}
-                                onChange={(event) => handleIconChange(event, setFieldValue)}
-                                variant="outlined"
-                                fullWidth
-                                displayEmpty
-                                sx={{ mt: 2 }}
-                            >
-                                {TodoListIcons.map((icon) => (
-                                    <MenuItem key={icon} value={icon}>
-                                        {/* <IconComponent iconName={icon} /> */}
-                                        {icon}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                            /> */}
+                                <TextField
+                                    id="list-name"
+                                    name="listName"
+                                    label="List Name"
+                                    variant="outlined"
+                                    value={values.listName}
+                                    onChange={(event) => setFieldValue("listName", event.target.value)}
+                                    fullWidth
+                                    error={touched.listName && Boolean(errors.listName)}
+                                    helperText={touched.listName && errors.listName}
+                                    margin="normal"
+                                />
+                            <FormControl fullWidth margin="normal">
+                                <InputLabel id="icon-select-label">Icon</InputLabel>
+                                <Select
+                                    labelId="icon-select-label"
+                                    id="icon-select"
+                                    name="icon"
+                                    value={values.icon}
+                                    onChange={(event) => handleIconChange(event, setFieldValue)}
+                                    variant="outlined"
+                                    label="Icon"
+                                    fullWidth
+                                    sx={{ mt: 2 }}
+                                >
+                                    {TodoListIcons.map((icon) => (
+                                        <MenuItem key={icon} value={icon}>
+                                            {/* <IconComponent iconName={icon} /> */}
+                                            {icon}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
                             <Button
                                 type="submit"
                                 variant="contained"
