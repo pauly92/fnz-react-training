@@ -1,7 +1,7 @@
-import Sidebar from '@modules/todo/components/Sidebar';
+import TodoListContainer from '@modules/todo/components/TodoListContainer';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import MainContent from '@modules/todo/components/MainContent';
+import TodoItemContainer from '@modules/todo/components/TodoItemContainer';
 import { useParams } from 'react-router-dom';
 
 function AppLayout() {
@@ -12,8 +12,8 @@ function AppLayout() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Sidebar activeID={activeID} />
-      <MainContent activeID={activeID} />
+      <TodoListContainer activeID={activeID} />
+      <TodoItemContainer activeID={activeID} />
     </Box>
   )
 }

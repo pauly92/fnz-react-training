@@ -1,21 +1,13 @@
-import React, { PropsWithChildren, useState } from 'react';
 import {
     Box,
     Typography,
-    Card,
-    List,
-    Fab,
-    ThemeProvider,
     Modal,
     Button,
     TextField,
 } from '@mui/material';
-import TodoItemComponent, { TodoItem } from '@modules/todo/components/TodoItem';
 import * as Yup from 'yup';
-import { useTodoItems } from '@modules/todo/services/TodoItemServicee';
-import AddIcon from '@mui/icons-material/Add';
-import buttonTheme from '@modules/core/themes/button';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
+import ModalProps from "@modules/todo/types/ModalProps";
 
 interface TodoItemCreationFormValues {
     title: string;
@@ -27,56 +19,19 @@ const validationSchema = Yup.object({
     // dueDate: Yup.date().required("Due date is required"),
 });
 
-const MainContent: React.FC<PropsWithChildren & { activeID: number }> = ({ activeID }) => {
-    const { todoItems } = useTodoItems(activeID);
 
-    const [open, setOpen] = useState<boolean>(false);
-
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+const TodoItemCreationModal: React.FC<ModalProps> = ( props ) => {   
+    const { open, toggleOpen } = props
 
     const handleSubmit = (values: TodoItemCreationFormValues, { resetForm }: FormikHelpers<TodoItemCreationFormValues>) => {
         console.log("New Todo Item:", values);
         alert(`Todo Item Added: ${JSON.stringify(values, null, 2)}`);
         resetForm();
-        handleClose();
+        toggleOpen();
     };
 
     return (
-        <ThemeProvider theme={buttonTheme}>
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-            >
-                <Typography variant="h4" sx={{ mb: 2 }}>
-                    Website Redesign
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 4 }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-
-                <Card sx={{ padding: 2, marginTop: 2 }}>
-                    <List>
-                        {todoItems && todoItems.map((ti) => (
-                            <TodoItemComponent key={ti.id} todoItem={ti}></TodoItemComponent>
-                        ))}
-                    </List>
-                </Card>
-
-                <Fab
-                    color="primary"
-                    aria-label="add"
-                    onClick={handleOpen}
-                    sx={{
-                        position: "fixed",
-                        bottom: 16,
-                        right: 16,
-                    }}
-                >
-                    <AddIcon />
-                </Fab>
-
-                <Modal open={open} onClose={handleClose}>
+        <Modal open={open} onClose={toggleOpen}>
                     <Box
                         sx={{
                             position: "absolute",
@@ -145,11 +100,7 @@ const MainContent: React.FC<PropsWithChildren & { activeID: number }> = ({ activ
                         </Formik>
                     </Box>
                 </Modal>
-
-            </Box>
-        </ThemeProvider>
-
     );
-};
+}
 
-export default MainContent;
+export default TodoItemCreationModal;
