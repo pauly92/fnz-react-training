@@ -34,16 +34,6 @@ const TodoListCreationModal: React.FC<ModalProps> = (props) => {
         toggleOpen();
     }
 
-    // Icon selection handler
-    const handleIconChange = (
-        event: SelectChangeEvent<string>,
-        setFieldValue: (field: string, value: any) => void
-    ): void => {
-        console.log("Icon selected:", event.target.value);
-        const { name, value } = event.target;
-        setFieldValue(name || "icon", value as string);
-    }
-
     return (
         <Modal open={open} onClose={toggleOpen}>
             <Box
@@ -98,7 +88,7 @@ const TodoListCreationModal: React.FC<ModalProps> = (props) => {
                                     id="icon-select"
                                     name="icon"
                                     value={values.icon}
-                                    onChange={(event) => handleIconChange(event, setFieldValue)}
+                                    onChange={(event) => setFieldValue("icon", event.target.value)}
                                     variant="outlined"
                                     label="Icon"
                                     fullWidth
